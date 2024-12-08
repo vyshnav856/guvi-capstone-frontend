@@ -1,0 +1,17 @@
+<div class="flex justify-center items-center flex-col min-h-screen text-center">
+	<h2 class="font-bold text-2xl mb-4">Log in</h2>
+
+	<form [formGroup]="myForm" (ngSubmit)="onFormSubmit()" class="min-w-[20rem] flex flex-col justify-center items-start">
+		<label for="username-login">Username</label>
+		<input id="username-login" formControlName="username" class="text-black rounded-md px-2 py-1 w-full" type="text">
+		<p *ngIf="myForm.get('username')?.touched && myForm.get('username')?.invalid" class="text-red-700 text-sm mt-1">Username is required</p>
+
+		<label class="mt-4" for="password-login">Password</label>
+		<input id="password-login" formControlName="password" class="text-black rounded-md px-2 py-1 w-full" type="password">
+		<p *ngIf="myForm.get('password')?.touched && myForm.get('password')?.invalid" class="text-red-700 text-sm mt-1">Password should have more than 8 characters</p>
+
+		<button class="mt-4 self-center px-8 py-2 font-semibold bg-white text-black rounded-md hover:bg-gray-200 transition duration-100" type="submit">Submit</button>
+	</form>
+
+	<a routerLink="/" class="hover:underline text-blue-500 cursor-pointer mt-4">Back to landing page</a>
+</div>

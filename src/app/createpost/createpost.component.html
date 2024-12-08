@@ -1,0 +1,17 @@
+<div class="flex flex-col items-center justify-center gap-4 bg-[#222] p-8 rounded-md absolute w-[20rem] top-full left-1/2 transform -translate-x-1/2">
+	<h3 class="text-xl font-bold">Create new post</h3>
+
+	<form [formGroup]="inputForm" (ngSubmit)="submitForm()" class="flex flex-col items-start justify-center gap-2">
+		<input formControlName="mediaUrl" class="text-black rounded-md px-2 py-1 w-full" placeholder="Media URL">
+		<p *ngIf="inputForm.get('mediaUrl')?.touched && inputForm.get('mediaUrl')?.invalid" class="text-red-700 text-sm">Media URL is required</p>
+
+		<input formControlName="content" class="text-black rounded-md px-2 py-1 w-full" placeholder="Post content">
+		<p *ngIf="inputForm.get('content')?.touched && inputForm.get('content')?.invalid" class="text-red-700 text-sm">Content is required</p>
+
+		<!-- <label><input formControlName="isVideo" type="checkbox"> Is a video</label> -->
+
+		<button [disabled]="inputForm.invalid" class="bg-white text-black cursor-pointer px-3 py-1 rounded-md hover:bg-gray-200 transition duration-100 self-center" type="submit">Create post</button>
+	</form>
+
+	<button (click)="close.emit()" class="bg-white text-black cursor-pointer px-3 py-1 rounded-md hover:bg-gray-200 transition duration-100">Cancel</button>
+</div>

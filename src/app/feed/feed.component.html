@@ -1,0 +1,50 @@
+<div class="flex flex-col items-center justify-center gap-4 relative">
+	<button (click)="openCreateForm()" class="bg-white text-black cursor-pointer px-3 py-1 rounded-md hover:bg-gray-200 transition duration-100">Create new post</button>
+
+	<app-createpost *ngIf="createFormVisible" (close)="closeCreateForm()" />
+
+	<div class="flex flex-col items-center justify-center gap-2">
+		<div *ngFor="let i of posts">
+			<div class="bg-[#222] rounded-md p-4 flex flex-col w-[390px] gap-1 relative" *ngIf="i.isAdvert">
+				<img class="rounded-md w-full" *ngIf="i.mediaType != 'video'" src={{i.url}}>
+				<p>{{i.content}}</p>
+				<a target="_blank" [href]="i.link" class="text-blue-500">Go to advert</a>
+			</div>
+
+			<div class="bg-[#222] rounded-md p-4 flex flex-col w-[390px] gap-1 relative" *ngIf="!i.isAdvert">
+				<p class="font-semibold">{{i.username}}</p>
+				<p class="text-sm">Posted on: {{ i.timestamp | date:"short" }}</p>
+				<img class="rounded-md w-full" *ngIf="i.mediaType != 'video'" src={{i.mediaUrl}}>
+				<p>{{i.content}}</p>
+				<p><span class="font-semibold">Likes:</span> {{i.likes}}</p>
+				<p><span class="font-semibold">Comments:</span> {{i.commentsCount}}</p>
+	
+				<button (click)="likePost(i.id); i.likedByUser = true" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer" *ngIf="!i.likedByUser">Like post</button>
+				<button (click)="unlikePost(i.id); i.likedByUser = false" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer" *ngIf="i.likedByUser">Unlike post</button>
+	
+				<button (click)="getComments(i.id); showComments = !showComments" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer">View comments</button>
+	
+				<button (click)="getComments(i.id); showReport = !showReport" class="px-4 py-1 text-red-500 bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer">Report post</button>
+	
+				<div>
+					<input class="text-black rounded-md px-2 py-1 w-full mb-2" [(ngModel)]="commentValue" placeholder="Enter comment">
+					  <button class="w-full px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer" (click)="submitComment(i.id)">Submit Comment</button>
+				</div>
+	
+				<div *ngIf="showComments">
+					<h4 class="font-semibold my-2">Comments</h4>
+					<div *ngFor="let i of comments" class="flex flex-col gap-1 py-2">
+						<p class="font-semibold text-sm">{{i.username}}</p>
+						<p class="text-sm">{{i.content}}</p>
+					</div>
+				</div>
+	
+				<div class="mt-2" *ngIf="showReport">
+					<input class="text-black rounded-md px-2 py-1 w-full mb-2" [(ngModel)]="reportValue" placeholder="Enter report reason">
+					<input class="text-black rounded-md px-2 py-1 w-full mb-2" [(ngModel)]="reportType" placeholder="Enter report type">
+					<button (click)="sendReport(i.id)"class="w-full px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer" >Submit report</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+<div class="flex flex-col items-center justify-center gap-1">
+	<h2 class="font-bold text-2xl">Admin Tools</h2>
+
+	<h2 class="font-bold text-xl">Advertisements</h2>
+	<input [(ngModel)]="advertLink" type="text" placeholder="Advert media link" class="w-[20rem] text-black rounded-md px-2 py-1">
+	<input [(ngModel)]="advertContent" type="text" placeholder="Description" class="w-[20rem] text-black rounded-md px-2 py-1">
+	<input [(ngModel)]="advertRedirect" type="text" placeholder="Enter redirect link" class="w-[20rem] text-black rounded-md px-2 py-1">
+	<button (click)="createAdvert()" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer mb-4">Create new advert</button>
+
+	<h2 class="font-bold text-xl">Reports</h2>
+	<div class="flex flex-col items-center justify-center gap-2">
+		<div class="p-4 w-[22rem] bg-[#222] rounded-md " *ngFor="let i of reports">
+			<p><span class="font-semibold">Reported by: </span> {{i.username}}</p>
+			<p><span class="font-semibold">Post ID: </span> {{i.postId}}</p>
+			<p><span class="font-semibold">Repoty type: </span> {{i.type}}</p>
+			<p><span class="font-semibold">Report description: </span> {{i.description}}</p>
+		</div>
+	</div>
+</div>

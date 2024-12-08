@@ -1,0 +1,16 @@
+<div class="flex flex-col items-center justify-center">
+	<input [(ngModel)]="query" (ngModelChange)="getSearch()" type="text" placeholder="Search profiles" class="w-[20rem] text-black rounded-md px-2 py-1 mb-4">
+
+	<div class="flex flex-col items-center justify-center gap-3">
+		<div class="w-[20rem] text-center bg-[#222] rounded-md p-4 flex items-center justify-center flex-col" *ngFor="let i of profilesFiltered">
+			<img class="w-20 h-20 rounded-md" [src]="i.picture">
+			<p><span class="font-semibold">Username: </span>{{i.username}}</p>
+			<p><span class="font-semibold">Bio:</span> {{i.bio}}</p>
+			<p><span class="font-semibold">Contact:</span> {{i.contact}}</p>
+
+			<button *ngIf="!i.followed" (click)="followUser(i.username); i.followed = !i.followed" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer">Follow User</button>
+
+			<button *ngIf="i.followed" (click)="unfollowUser(i.username); i.followed = !i.followed" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer">Unollow User</button>
+		</div>
+	</div>
+</div>

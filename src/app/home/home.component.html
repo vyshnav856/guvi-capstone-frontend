@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center justify-center">
+	
+	<div class="flex flex-row items-center justify-center gap-8">
+		<h2 class="my-2 text-2xl font-bold">Super-Social</h2>
+		<p *ngIf="username" class="my-2">{{username}}</p>
+	</div>
+	
+
+	<nav class="flex items-center justify-center gap-4 flex-wrap mb-4">
+		<a class="transtiton duration-100 bg-[#222] rounded-md px-4 py-1 cursor-pointer hover:bg-[#444]" routerLinkActive="bg-[#444]" routerLink="/home/feed">Feed</a>
+		<a class="transtiton duration-100 bg-[#222] rounded-md px-4 py-1 cursor-pointer hover:bg-[#444]" routerLinkActive="bg-[#444]" routerLink="/home/search" >Search</a>
+		<a class="transtiton duration-100 bg-[#222] rounded-md px-4 py-1 cursor-pointer hover:bg-[#444]" routerLinkActive="bg-[#444]" routerLink="/home/notifications">Notifications</a>
+		<a class="transtiton duration-100 bg-[#222] rounded-md px-4 py-1 cursor-pointer hover:bg-[#444]" routerLinkActive="bg-[#444]" routerLink="/home/messages">Messages</a>
+		<a class="transtiton duration-100 bg-[#222] rounded-md px-4 py-1 cursor-pointer hover:bg-[#444]" routerLinkActive="bg-[#444]" routerLink="/home/profile">Profile</a>
+		<a class="transtiton duration-100 bg-[#222] rounded-md px-4 py-1 cursor-pointer hover:bg-[#444]" routerLinkActive="bg-[#444]" routerLink="/home/admin" *ngIf="isAdmin">Admin Tools</a>
+		<a (click)="logout()" class="transtiton duration-100 bg-red-600 rounded-md px-4 py-1 cursor-pointer hover:bg-red-500">Log Out</a>
+	</nav>
+	
+	<router-outlet />
+</div>

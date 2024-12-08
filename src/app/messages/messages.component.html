@@ -1,0 +1,20 @@
+<div class="flex flex-col items-center justify-center gap-8">
+	<div class="flex flex-col gap-1">
+		<h2 class="font-bold text-xl">Send message</h2>
+		<input [(ngModel)]="username" class="w-[20rem] text-black rounded-md px-2 py-1 mb-4" type="text" placeholder="username">
+		<input [(ngModel)]="message" class="w-[20rem] text-black rounded-md px-2 py-1 mb-4" type="text" placeholder="Message">
+
+		<button (click)="sendMessage()" class="px-4 py-1 text-black bg-white rounded-md transition duration-100 hover:bg-gray-200 cursor-pointer">Send message</button>
+	</div>
+
+	<div>
+		<h2 class="font-bold text-xl">Received messages</h2>
+		<div class="flex flex-col gap-2">
+		<div class="w-[20rem] rounded-md bg-[#333] px-4 py-2" *ngFor="let i of messages">
+			<p class="font-semibold">{{i.sender}}</p>
+			<p class="text-sm">{{ i.timestamp | date:"short" }}</p>
+			<p>{{i.content}}</p>
+		</div>
+		</div>
+	</div>
+</div>

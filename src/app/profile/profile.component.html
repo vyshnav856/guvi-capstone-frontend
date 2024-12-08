@@ -1,0 +1,16 @@
+<div class="flex flex-col items-center justify-center">
+	<img class="w-20 h-20 rounded-md" [src]="picture">
+	<p class="text-xl">{{username}}</p>
+	<p class="text-sm mb-4">{{id}}</p>
+
+	<div class="flex flex-col items-center justify-center gap-2">
+		<div class="bg-[#222] rounded-md p-4 flex flex-col w-[390px] gap-1 relative" *ngFor="let i of posts">
+			<p class="font-semibold">{{i.username}}</p>
+			<p class="text-sm">Posted on: {{ i.timestamp | date:"short" }}</p>
+			<img class="rounded-md w-full" *ngIf="i.mediaType != 'video'" src={{i.mediaUrl}}>
+			<p>{{i.content}}</p>
+			<p><span class="font-semibold">Likes:</span> {{i.likes}}</p>
+			<p><span class="font-semibold">Comments:</span> {{i.commentsCount}}</p>
+		</div>
+	</div>
+</div>

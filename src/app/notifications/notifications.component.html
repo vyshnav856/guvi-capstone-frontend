@@ -1,0 +1,7 @@
+<div *ngIf="notifications.length > 0" class="flex flex-col items-center gap-2 justify-center">
+	<div class="bg-[#222] rounded-md p-2 px-4" *ngFor="let i of notifications">
+		<p>{{i.message}} at {{ i.timestamp | date:"short" }}</p>
+	</div>
+</div>
+
+<p *ngIf="notifications.length <= 0">No notifications to show</p>
